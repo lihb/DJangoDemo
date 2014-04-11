@@ -1,0 +1,14 @@
+ <head> 
+     <title>{{title}}</title> 
+	</head> 
+	<body> 
+		<h2>lhb's wiki</h2> 
+		<div> 
+		</div> 
+		<div> 
+			{% for person in persons %}
+			<li>{{ forloop.counter}} {{ person }}</li>
+			{% endfor %}
+		</div> 
+	</body> 
+ </html>

@@ -1,0 +1,14 @@
+<html>
+	<head>
+		<title>{{title}}</title>
+	</head>
+	<body>
+		<h2>user's information</h2>
+		<div>
+			{% for k, v in information.items %}
+				<li>{{k}} = {{v}}</li>
+			{% endfor %}
+
+		</div>
+	</body>
+</html>

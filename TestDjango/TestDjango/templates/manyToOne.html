@@ -1,0 +1,14 @@
+<html>
+	<head>
+		<title>{{title}}</title>
+	</head>
+	<body>
+		<h2>many to one </h2>
+		<div>
+			{% for dep in dept %}
+			<li>{{dep}}  {{dep.leader}}</li>
+			{% endfor %}
+
+		</div>
+	</body>
+</html>
