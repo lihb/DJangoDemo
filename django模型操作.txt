@@ -1,0 +1,74 @@
+主要是在shell环境下实验：
+比如我们的models.py是以下内容
+#################################################
+#modles.py
+
+from django.db import modles
+
+def User(modles.Modle):
+	name = modles.CharField(max_length=30)
+	sex  = modles.CharField(max_length=10)
+	age  = modles.CharField(max_length=10)
+
+	def __unicode__(self):
+		return self.name
+
+
+###############################################
+运行命令: python manager.py shell
+进入交互模式
+
+1.首先导入modles.py文件中的类数据
+	from xxx.modles import user
+
+2.增加（插入）数据
+
+	2.1 利用构造函数
+		user1 = User(name='alen', age='14', sex='male')
+		user1.save()
+		ps:在没调用save方法之前，数据是没有保存到数据库中。每调用一次save方法，即使你仅仅需要修改某个属性，她都会重新更新全部数据。
+
+	2.2 利用objects.create方法
+		user2 = User.objects.create(name='Ben',age='13', sex='female')
+		ps:create方法不需要调用save方法
+
+
+3 查找数据
+	3.1 查找所有数据
+		User.objects.all()   # 返回的是结果集--QuerySet
+	3.2 查找满足条件的数据
+		User.objects.filter(sex='male')     # 返回的也是结果集，因为可能有多个，filter函数里的参数可以有多个。
+		User.objects.filter(name__contains='len')    # 返回名字中包含len字符的所有结果
+		ps：其他的一些常用查找类型有：icontains(大小写无关的LIKE),startswith和endswith, 还有range(SQLBETWEEN查询）
+	3.3 精确查找某条数据
+		User.objects.get(name='alen')
+		ps:只返回单个对象，如果结果是多个对象或者没有对象，则会抛出异常
+	3.4 限制返回的数据
+		因为又objects.all()方法和objects.filter()方法返回的是一个结果集，在python里就是一个list类型，所以我们可以采用索引和切片的方式来限制返回的数据，如：
+		User.objects.all()[0]   # 返回第一个数据的结果集
+		User.objects.filter(sex='male')[0:2] # 返回前两个数据的结果集
+		ps:不支持负索引
+
+4.更新、修改数据(update)
+	User.objects.filter(name='Ben').update(age='23')  #修改某个数据的某个属性
+	User.objects.all().update(age='23')               #修改某些数据的某个属性
+	ps: update方法对于任何结果集均有效，可以一次同时更新多条记录，
+		update方法会返回一个整型数值，表示受影响的记录条数。
+
+5.删除数据(delete)
+	5.1 
+		user = User.objects.get(name='Ben')
+		user.delete()
+	5.2 
+		User.objects.filter(sex='male').delete()
+		User.objects.all().delete()
+
+
+6.数据排序(order_by)
+	User.objects.all().order_by('name')      #按name字段的字母顺序排序
+	User.objects.all().order_by('-name')     #加个 - 号，表示按name字段的反向字母顺序排序
+
+	User.objects.filter(sex='male').order_by('name') #按name字段的字母顺序排序
+
+	
+
