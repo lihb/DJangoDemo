@@ -1,14 +1,14 @@
 主要是在shell环境下实验：
 比如我们的models.py是以下内容
 #################################################
-#modles.py
+#models.py
 
-from django.db import modles
+from django.db import models
 
-def User(modles.Modle):
-	name = modles.CharField(max_length=30)
-	sex  = modles.CharField(max_length=10)
-	age  = modles.CharField(max_length=10)
+def User(models.Model):
+	name = models.CharField(max_length=30)
+	sex  = models.CharField(max_length=10)
+	age  = models.CharField(max_length=10)
 
 	def __unicode__(self):
 		return self.name
@@ -18,8 +18,8 @@ def User(modles.Modle):
 运行命令: python manager.py shell
 进入交互模式
 
-1.首先导入modles.py文件中的类数据
-	from xxx.modles import user
+1.首先导入models.py文件中的类数据
+	from xxx.models import user
 
 2.增加（插入）数据
 
