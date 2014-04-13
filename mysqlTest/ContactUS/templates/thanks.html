@@ -1,0 +1,11 @@
+<title>3q page</title>
+
+
+{% if info %}
+	{% for k,v in info.items %}
+		<li> {{ k }} :  {{ v }}</li>
+	{% endfor %}
+{% else %}
+	<p> There is no seesion</p>
+{% endif %}
+

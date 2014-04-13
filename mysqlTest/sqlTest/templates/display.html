@@ -1,0 +1,13 @@
+<div>
+	path: {{ path }}
+</div>
+<div>
+	host: {{ host }}
+</div>
+
+
+<div>
+	{% for k, v in meta_info.items %}
+	<li> {{ k }} = {{ v }}</li>
+	{% endfor %}
+</div>
