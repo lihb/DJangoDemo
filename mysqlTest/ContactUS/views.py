@@ -33,7 +33,7 @@ def contact(req):
 				data['subject'],
 				data['message'],
 				data.get('email', 'noreply@example.com'),
-				['siteowner@example.com'],
+				['siteowner@example.com',],
 			)
 			req.session['subject'] = data['subject']
 			req.session['message'] = data['message']
